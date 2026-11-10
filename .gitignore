@@ -1,0 +1,5 @@
+# Dependencies and local tools
+.DS_Store
+.agents/
+node_modules/
+*.log
