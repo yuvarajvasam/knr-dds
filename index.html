@@ -100,6 +100,32 @@ html, body {
     min-width: 0;
 }
 
+.brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+    user-select: none;
+}
+
+.brand-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.brand-icon-mobile {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin-right: 6px;
+}
+
 .brand-title {
     font-size: 17px;
     font-weight: 800;
@@ -1292,27 +1318,31 @@ tfoot td {
     z-index: 100;
     background: #ffffff;
     border-top: 1px solid var(--border-subtle);
-    padding: 5px 6px calc(5px + env(safe-area-inset-bottom, 0px));
-    gap: 4px;
-    box-shadow: 0 -2px 10px rgba(15, 23, 42, 0.06);
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
+    min-height: 58px;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 -3px 12px rgba(15, 23, 42, 0.08);
 }
 
 .mobile-tab-btn {
     flex: 1;
     border: none;
     background: transparent;
-    padding: 8px 2px;
+    padding: 10px 4px;
     font-family: inherit;
-    font-size: 11.5px;
+    font-size: 13px;
     font-weight: 700;
     color: var(--text-muted);
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.15s ease;
+    min-height: 40px;
 }
 
 .mobile-tab-btn.active {
@@ -1684,7 +1714,7 @@ tfoot td {
     }
 
     .app-content {
-        padding: 8px 8px calc(76px + env(safe-area-inset-bottom, 0px));
+        padding: 8px 8px calc(86px + env(safe-area-inset-bottom, 0px));
         box-sizing: border-box;
         width: 100%;
         overflow-x: hidden;
@@ -2112,8 +2142,11 @@ tfoot td {
     background: #f8fafc;
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
-    padding: 14px 18px;
+    padding: 14px 16px;
     margin-bottom: 14px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
 }
 
 .transfers-create-title {
@@ -2129,15 +2162,20 @@ tfoot td {
 
 .transfer-form-grid {
     display: grid;
-    grid-template-columns: 140px 140px 1.5fr 110px 140px;
+    grid-template-columns: minmax(0, 140px) minmax(0, 140px) minmax(0, 1.5fr) minmax(0, 110px) minmax(0, 140px);
     gap: 10px;
     align-items: flex-end;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .transfer-field {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .transfer-label {
@@ -2156,9 +2194,14 @@ tfoot td {
     font-weight: 600;
     color: var(--text-main);
     height: 38px;
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.15s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .transfer-select:focus, .transfer-input:focus {
@@ -2261,17 +2304,49 @@ tfoot td {
 }
 
 @media (max-width: 768px) {
+    .transfers-create-card {
+        padding: 12px 10px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+    }
     .transfer-form-grid {
-        grid-template-columns: 1fr 1fr !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+        gap: 10px 8px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .transfer-field {
+        min-width: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     .transfer-field-product {
         grid-column: span 2 !important;
+        min-width: 0 !important;
     }
     .transfer-field-qty {
         grid-column: span 1 !important;
+        min-width: 0 !important;
     }
     .transfer-field-btn {
         grid-column: span 1 !important;
+        min-width: 0 !important;
+        justify-content: flex-end;
+    }
+    .transfer-field-btn .transfer-label {
+        display: none;
+    }
+    .transfer-field-btn button {
+        height: 38px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 0 4px !important;
+        font-size: 13px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     .transfers-table-wrap {
         display: none !important;
@@ -2399,12 +2474,23 @@ tfoot td {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #f8fafc;
-    padding: 24px 16px;
+    background: #ffffff;
+    padding: 24px 20px;
     box-sizing: border-box;
 }
 
-.auth-page-card, .auth-modal-card {
+.auth-page-card {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 360px;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+
+.auth-modal-card {
     background: #ffffff;
     border: 1px solid var(--border-subtle, #e2e8f0);
     border-radius: 14px;
@@ -2675,13 +2761,15 @@ tfoot td {
 <div class="auth-page-screen" id="authLoginModal" style="display:flex;">
     <div class="auth-page-card">
         <div class="auth-page-header">
-            <div>
-                <h1 class="auth-brand">dairy note</h1>
-                <p class="auth-tagline">store register & inventory</p>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="icons/icon-192.png" alt="dairy note" style="width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                <div>
+                    <h1 class="auth-brand">dairy note</h1>
+                    <p class="auth-tagline">store register & inventory</p>
+                </div>
             </div>
             <div class="auth-portal-badge">Sign in</div>
         </div>
-        <p class="auth-subtext" id="authSubtext">Sign in with your username and password.</p>
 
         <form id="authLoginForm" onsubmit="handleAuthLogin(event); return false;">
             <div class="auth-field">
@@ -2700,10 +2788,6 @@ tfoot td {
             <div class="auth-error-msg" id="authErrorMsg" style="display:none;"></div>
             <button type="submit" class="auth-btn-submit" id="authSubmitBtn">Sign in</button>
         </form>
-
-        <div class="auth-footer-note">
-            <span>Store access is strictly enforced by database policies.</span>
-        </div>
     </div>
 </div>
 
@@ -2712,7 +2796,10 @@ tfoot td {
     <!-- DESKTOP TOP BAR (Compact horizontal bar at top) -->
     <header class="desktop-header">
         <div class="header-left">
-            <h1 class="brand-title">dairy note</h1>
+            <div class="brand-link">
+                <img src="icons/icon-192.png" alt="dairy note" class="brand-icon">
+                <h1 class="brand-title">dairy note</h1>
+            </div>
             <div class="outlet-badge-wrap">
                 <select id="selectOutlet" class="outlet-select" onchange="switchOutlet(this.value)" title="Active Outlet">
                     <option value="store_1">Govardhini</option>
@@ -2803,7 +2890,7 @@ tfoot td {
     <!-- MOBILE TOP STICKY BAR (Phone & Tablet) -->
     <header class="mobile-top-bar">
         <div class="mobile-brand-title">
-            <span>dairy note</span>
+            <img src="icons/icon-192.png" alt="dairy note" class="brand-icon-mobile">
             <select id="selectOutletMobile" class="outlet-select-mobile" onchange="switchOutlet(this.value)">
                 <option value="store_1">Govardhini</option>
                 <option value="store_2">Rajashyamala</option>

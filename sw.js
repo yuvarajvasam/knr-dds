@@ -6,7 +6,7 @@
    data or offline caching.
 ------------------------------------------------------------- */
 
-const CACHE_NAME = "dairy-note-v11";
+const CACHE_NAME = "dairy-note-v12";
 const APP_SHELL = [
   "./",
   "./index.html",
